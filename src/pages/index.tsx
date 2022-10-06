@@ -1,3 +1,4 @@
+import { GaxiosResponse } from 'gaxios';
 import type { NextPage } from 'next'
 import { FormEvent, useState } from 'react';
 
@@ -13,7 +14,7 @@ const Home: NextPage = () => {
       date
     }
 
-    const response = await fetch('/api/submitResponse', {
+    const response: GaxiosResponse = await fetch('/api/submitResponse', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,9 +23,7 @@ const Home: NextPage = () => {
       body: JSON.stringify(form)
     });
 
-    const content = await response.json();
-
-    alert(content.data.tableRange);
+    alert('Registrado com sucesso. Obrigado!');
   }
 
   return (
@@ -56,7 +55,7 @@ const Home: NextPage = () => {
               onChange={(e) => {
                 setDate(e.target.value)
               }}
-              type='text'
+              type='date'
               id='date'
               placeholder='Data de Saída'
               className='shadow-md focus:ring-indigo-500 focus-border-indigo-500 block w-64 sm:text-md border-gray-300 rounded-md'

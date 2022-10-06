@@ -44,7 +44,7 @@ export default async function handleSubmitResponse(req: NextApiRequest, res: Nex
       }
     });
 
-    return res.status(201).json(response);
+    res.status(201).json(response);
 
   } catch (err) {
     console.error(err);
