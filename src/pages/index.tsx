@@ -1,4 +1,5 @@
 import { GaxiosResponse } from 'gaxios';
+import { sheets_v4 } from 'googleapis';
 import type { NextPage } from 'next'
 import { FormEvent, useState } from 'react';
 
@@ -13,8 +14,8 @@ const Home: NextPage = () => {
       name,
       date
     }
-
-    const response: GaxiosResponse = await fetch('/api/submitResponse', {
+    
+    const response: GaxiosResponse<sheets_v4.Schema$AppendValuesResponse> = await fetch('/api/submitResponse', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -22,6 +23,8 @@ const Home: NextPage = () => {
       },
       body: JSON.stringify(form)
     });
+
+    if(response.)
 
     alert('Registrado com sucesso. Obrigado!');
   }
