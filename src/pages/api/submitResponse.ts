@@ -52,5 +52,6 @@ export default async function handleSubmitResponse(req: NextApiRequest, res: Nex
     return res.status(500).send({
       message: 'Internal server error'
     });
+    
   }
 }
