@@ -1,14 +1,36 @@
 import type { NextPage } from 'next'
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 const Home: NextPage = () => {
   const [name, setName] = useState('');
   const [date, setDate] = useState('');
 
+  const handleSubmitt = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const form = {
+      name,
+      date
+    }
+
+    const response = await fetch('/api/submitResponse', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(form)
+    });
+
+    const content = await response.json();
+
+    alert(content.data.tableRange);
+  }
+
   return (
     <main className='bg-gray-100 min-h-screen'>
       <div className='max-w-5l mx-auto py-16'>
-        <form className='py-4 space-y-4'>
+        <form className='py-4 space-y-4' onSubmit={handleSubmitt}>
           <div className='flex items-center justify-center py-4'>
             <h1 className='font-bold text-gray-700 text-lg'>
               Formulário 2 Semestre C.C.
